@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\pageController;
+use App\Http\Controllers\sqlController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -29,6 +30,14 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(pageController::class)->group(function () {
         Route::get('/cms', 'showCms')->name('cms.showCms');
         Route::get('/cms-add-form', 'cmsaddform')->name('cms.cmsadd');
-        Route::get('/getmenu/{id}', 'checksubMenu');
+        Route::get('/users', 'profile')->name('users.profile');
+        Route::post('/change-password', 'changePassword')->name('change.password');
     });
+});
+
+
+// Route for sql
+
+Route::controller(sqlController::class)->group(function () {
+    Route::get('secSalary/{number}', 'secondhigestSalary');
 });
