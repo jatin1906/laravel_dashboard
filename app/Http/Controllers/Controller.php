@@ -23,7 +23,7 @@ class Controller extends BaseController
         view()->share('menus', $menus);
     }
 
- 
+
     // Start : Creating a common function to show the response the data in json format
     function sendError($error, $errorMessage = [], $code = 404)
     {
@@ -39,7 +39,7 @@ class Controller extends BaseController
         return response()->json($response, $code);
     }
 
-    function sendResponse($message, $res)
+    function sendResponse($message, $res = [])
     {
         $response = [
             'status' => true,

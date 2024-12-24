@@ -25,28 +25,44 @@ class pageController extends Controller
     {
         return view('pages.users-profile');
     }
-    function changePassword(request $request)
+
+    public function changePassword(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'password' => 'required',
-            'newPassword' => 'required|min:6',
-            'confirmPassword' => 'required|same:newPassword'
-        ]);
-        // Log::info("password Match ");
+        $user = Auth::user();
+        if ($request->has('data')) {
+            parse_str($request->input('data'), $data);
 
+            // Validate the parsed data
+            $validator = Validator::make($data, [
+                'password' => 'required',
+                'newpassword' => 'required|min:6',
+                'confirmpassword' => 'required|same:newpassword',
+            ]);
 
-        if ($validator->fails()) {
-            return redirect()->route('users.profile')->withErrors($validator)->withInput();
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'errors' => $validator->errors(),
+                    'message' => 'Invalid Credentials.',
+                ], 422);
+            }
+
+            // Now you can access individual values in the array
+            if (!empty($data['password']) && !empty($data['newpassword'])) {
+
+                $password = $data['password'] ?? null;
+                $newPassword = $data['newpassword'] ?? null;
+                $confirmPassword = $data['confirmpassword'] ?? null;
+
+                if (!Hash::check($password, $user->password)) {
+                    return $this->sendError('Current Password does not match');
+                }
+
+                // If validation passes, update password
+                $user->password = Hash::make($newPassword);
+                $user->save();
+                return $this->sendResponse('Password changed successfully');
+            }
         }
-
-        if (Hash::check($request->password, Auth::user()->password)) {
-            // Log::info('password Match');
-            // return 'Password Match';
-        } else {
-            // Log::info('password not Match');
-            return 'Password did\'nt match.';
-        }
-        // $data[] = Hash::make('newPassword');
-        // $Update = User::createupdate();
     }
 }

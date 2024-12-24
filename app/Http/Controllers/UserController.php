@@ -9,6 +9,7 @@ use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\facades\Validator;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 
 
@@ -37,7 +38,7 @@ class UserController extends Controller
             $input['name'] = strtolower($input['name']); // Convert name to lowercase
             $input['email'] = strtolower($input['email']); // Convert email to lowercase
             $input['userType'] = strtolower($input['userType']); // Convert userType to lowercase
-            $input['password'] = bcrypt($input['password']); // Hash password
+            $input['password'] = Hash::make($input['password']); // Hash password
 
             $user = User::create($input);
             $success['token'] = $user->createToken('MyApp')->plainTextToken;

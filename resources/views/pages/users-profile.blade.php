@@ -14,12 +14,6 @@
           <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
           <h2>{{Auth::user()->name}}</h2>
           <h3>{{Auth::user()->userType}}</h3>
-          <!-- <div class="social-links mt-2">
-            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-          </div> -->
         </div>
       </div>
 
@@ -45,6 +39,7 @@
             </li>
 
           </ul>
+
 
           <div class="tab-content pt-2">
 
@@ -94,13 +89,17 @@
             <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
               <!-- Profile Edit Form -->
-              <form>
+              <form method="">
                 <div class="row mb-3">
                   <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                   <div class="col-md-8 col-lg-9">
                     <img src="assets/img/profile-img.jpg" alt="Profile">
                     <div class="pt-2">
-                      <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
+                      <input type="file" name="profileImage" id="getImage" style="display:none;">
+                      <a href="javascript:void(0);" id="uploadButton" class="btn btn-primary btn-sm" title="Upload new profile image">
+                        <i class="bi bi-upload"></i>
+                      </a>
+
                       <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
                     </div>
                   </div>
@@ -109,59 +108,51 @@
                 <div class="row mb-3">
                   <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
                   <div class="col-md-8 col-lg-9">
-                    <input name="fullName" type="text" class="form-control" id="fullName" value="Kevin Anderson">
+                    <input name="fullName" type="text" class="form-control" id="fullName" value="">
                   </div>
                 </div>
 
                 <div class="row mb-3">
                   <label for="about" class="col-md-4 col-lg-3 col-form-label">About</label>
                   <div class="col-md-8 col-lg-9">
-                    <textarea name="about" class="form-control" id="about" style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
+                    <textarea name="about" class="form-control" id="about" style="height: 100px"></textarea>
                   </div>
                 </div>
 
                 <div class="row mb-3">
                   <label for="company" class="col-md-4 col-lg-3 col-form-label">Company</label>
                   <div class="col-md-8 col-lg-9">
-                    <input name="company" type="text" class="form-control" id="company" value="Lueilwitz, Wisoky and Leuschke">
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <label for="Job" class="col-md-4 col-lg-3 col-form-label">Job</label>
-                  <div class="col-md-8 col-lg-9">
-                    <input name="job" type="text" class="form-control" id="Job" value="Web Designer">
+                    <input name="company" type="text" class="form-control" id="company" value="">
                   </div>
                 </div>
 
                 <div class="row mb-3">
                   <label for="Country" class="col-md-4 col-lg-3 col-form-label">Country</label>
                   <div class="col-md-8 col-lg-9">
-                    <input name="country" type="text" class="form-control" id="Country" value="USA">
+                    <input name="country" type="text" class="form-control" id="Country" value="">
                   </div>
                 </div>
 
                 <div class="row mb-3">
                   <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
                   <div class="col-md-8 col-lg-9">
-                    <input name="address" type="text" class="form-control" id="Address" value="A108 Adam Street, New York, NY 535022">
+                    <input name="address" type="text" class="form-control" id="Address" value="">
                   </div>
                 </div>
 
                 <div class="row mb-3">
                   <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
                   <div class="col-md-8 col-lg-9">
-                    <input name="phone" type="text" class="form-control" id="Phone" value="(436) 486-3538 x29071">
+                    <input name="phone" type="text" class="form-control" id="Phone" value="">
                   </div>
                 </div>
 
                 <div class="row mb-3">
                   <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                   <div class="col-md-8 col-lg-9">
-                    <input name="email" type="email" class="form-control" id="Email" value="k.anderson@example.com">
+                    <input name="email" type="email" class="form-control" id="Email" value="">
                   </div>
                 </div>
-
 
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary">Save Changes</button>
@@ -170,40 +161,42 @@
 
             </div>
 
-
+            <!-- Change Password Form -->
             <div class="tab-pane fade pt-3" id="profile-change-password">
-              <!-- Change Password Form -->
-              <form method="post" action="{{route('change.password')}}">
+              <div class="alert alert-success popup" style="/* height:50px; */margin: -1px;padding: 9px;display:none"> </div>
+              <form id='changePass' method="post">
                 @csrf
                 <div class="row mb-3">
                   <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
                   <div class="col-md-8 col-lg-9">
-                    <input name="password" type="password" name='password' class="form-control" id="currentPassword">
+                    <input name="password" type="password" name='password' class="form-control" id="currentPassword"><i class="fa-solid eye fa-eye"></i>
+                    <span class="error-message">Please Enter Password</span>
                   </div>
                 </div>
 
                 <div class="row mb-3">
                   <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
                   <div class="col-md-8 col-lg-9">
-                    <input name="newpassword" type="password" name='newPassword' class="form-control" id="newPassword">
+                    <input name="newpassword" type="password" name='newpassword newPassword' class="form-control" id="newPassword"><i class="fa-solid eye fa-eye"></i>
+                    <span class="error-message">Please Enter New Password</span>
                   </div>
                 </div>
 
                 <div class="row mb-3">
                   <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
                   <div class="col-md-8 col-lg-9">
-                    <input name="renewpassword" name='confirmPassword' type="password" class="form-control" id="renewPassword">
+                    <input name='confirmpassword' type="password" class="form-control renewPassword" id="renewPassword"><i class="fa-solid eye fa-eye"></i>
+                    <span class="error-message">Please Enter Confirm Password</span>
                   </div>
                 </div>
 
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary">Change Password</button>
                 </div>
-              </form><!-- End Change Password Form -->
 
+              </form>
             </div>
-
-          </div><!-- End Bordered Tabs -->
+          </div>
 
         </div>
       </div>
