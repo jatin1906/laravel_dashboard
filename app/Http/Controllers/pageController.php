@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cms;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
@@ -19,7 +20,8 @@ class pageController extends Controller
     }
     function cmsaddform()
     {
-        return view('pages.cms-add');
+        $selData = Cms::where('parent_page_id', '=', '0')->get();
+        return view('pages.cms-add', compact('selData'));
     }
     function profile()
     {

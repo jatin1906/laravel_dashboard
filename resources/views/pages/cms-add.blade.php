@@ -14,36 +14,46 @@
 
           <!-- General Form Elements -->
           <form method="post" action="">
+
             @csrf
             <div class="row mb-3">
               <label for="inputText" class="col-sm-2 col-form-label">Parent Page :</label>
               <div class="col-sm-10">
                 <select id='parent_page' name="parent_page" class="form-control">
+
                   <option value='0'>---Please Select</option>
-                  <option value="">1</option>
-                  <option value="">1445</option>
-                  <option value="">14</option>
-                  <option value="">1</option>
+                  @if(isset($selData) && count($selData) >0)
+                  @foreach($selData as $val)
+
+                  <option value="{{$val->id}}"> {{$val->page_title}}</option>
+                  @endforeach
+                  @endif
+
                 </select>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <label for="inputPassword" class="col-sm-2 col-form-label">Menu Name :</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control">
-              </div>
-            </div>
-            <div class="row mb-3">
-              <label for="inputEmail" class="col-sm-2 col-form-label">Route Name :</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control">
               </div>
             </div>
 
             <div class="row mb-3">
+              <label for="inputPassword" class="col-sm-2 col-form-label">Menu Name :</label>
+              <div class="col-sm-10">
+                <input type="text" name="page_title" id="dynamicRoute" class="form-control">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label for="inputEmail" class="col-sm-2 col-form-label">Route Name :</label>
+              <div class="col-sm-10">
+                <input type="text" name="page_url" id="page_url" value="" class="form-control page_url" readonly>
+              </div>
+            </div>
+
+
+
+
+            <div class="row mb-3">
               <label for="inputNumber" class="col-sm-2 col-form-label">Page Order :</label>
               <div class="col-sm-10">
-                <input type="number" class="form-control">
+                <input type="number" name="page_sort" class="form-control">
               </div>
             </div>
 

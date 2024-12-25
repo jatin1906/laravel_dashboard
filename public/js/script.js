@@ -125,7 +125,6 @@ $(document).ready(function () {
                         $('#changePass').prev('.popup').show().text(response.message).css('color', 'danger');
                     }
                 }
-
             }, error: function (xhr) {
                 $('#changePass').prev('.popup').show().text(xhr.responseJSON.message).css('color', 'danger');
             }
@@ -136,4 +135,12 @@ $(document).ready(function () {
     $('#uploadButton').on('click', function () {
         document.getElementById('getImage').click();
     });
+
+    $('#dynamicRoute').on('input', function () {
+        var data = $(this).val();
+        data = data.trim().toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-');
+        $('#page_url').val(data);
+    });
+
+
 });

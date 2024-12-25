@@ -4,7 +4,6 @@ use App\Http\Controllers\loginController;
 use App\Http\Controllers\pageController;
 use App\Http\Controllers\sqlController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
 
     /*
 |--------------------------------------------------------------------------
@@ -37,7 +36,6 @@ Route::middleware(['auth'])->group(function () {
 
 
 // Route for sql
-
 Route::controller(sqlController::class)->group(function () {
     Route::get('secSalary/{number}', 'secondhigestSalary');
 });

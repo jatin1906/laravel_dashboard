@@ -40,7 +40,7 @@
             @foreach($val->submenus as $k => $sub)
             <ul id="components-nav<?php echo $id ?>" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="">
+                    <a href="{{$sub->page_url}}">
                         <i class="bi bi-circle"></i><span>{{$sub->page_title}}</span>
                     </a>
                 </li>
