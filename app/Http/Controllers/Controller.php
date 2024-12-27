@@ -15,9 +15,9 @@ class Controller extends BaseController
     function __construct()
     {
         $menus = Cms::where('status', 'A')
-            ->where('parent_page_id', '0')
+            ->where('parent_page_id', '0')->orderby('page_sort', 'asc')
             ->with(['submenus' => function ($query) {
-                $query->where('status', 'A');
+                $query->where('status', 'A')->orderby('page_sort', 'asc');
             }])->get();
 
         view()->share('menus', $menus);

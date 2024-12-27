@@ -14,3 +14,13 @@ if (!function_exists('getUserName')) {
         return "Hello " . $name;
     }
 }
+
+if (!function_exists('sanatizeData')) {
+    function sanatizeData($data)
+    {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+}

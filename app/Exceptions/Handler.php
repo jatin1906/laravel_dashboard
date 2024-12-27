@@ -56,4 +56,13 @@ class Handler extends ExceptionHandler
 
         return redirect()->guest(route('login.login'));
     }
+
+    function render($request, Throwable $exception)
+    {
+        if ($this->isHttpException($exception)) {
+
+            return response()->view('error.404', [], 404);
+        }
+        return parent::render($request, $exception);
+    }
 }

@@ -31,6 +31,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/cms-add-form', 'cmsaddform')->name('cms.cmsadd');
         Route::get('/users', 'profile')->name('users.profile');
         Route::post('/change-password', 'changePassword')->name('change.password');
+        Route::post('/add-cms-data', 'addCmsData')->name('add-cms-data.addCmsData');
     });
 });
 
