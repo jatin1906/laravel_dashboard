@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\salary;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -22,5 +24,12 @@ class sqlController extends Controller
             $salUserData[$val->id] = $val->salary;
         }
         return $salUserData;
+    }
+
+    function getUserRecord()
+    {
+        $user = User::find(1)->salary;
+        $user = User::with('salary')->find(1);
+        return $user;
     }
 }

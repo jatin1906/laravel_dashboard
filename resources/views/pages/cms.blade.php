@@ -27,10 +27,12 @@
           <table class="table datatable table-bordered text-center table-striped">
             <thead>
               <tr>
+                <th>Parent Page</th>
                 <th>Page Url</th>
                 <th>Page Title</th>
-                <th>Page Url</th>
-                <th>Page Url</th>
+                <th>Page Order</th>
+                <th>Status</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -42,10 +44,7 @@
                 <td>2006/08/09</td>
                 <td>41%</td>
                 <td>41%</td>
-                <td>41%</td>
-                <td>41%</td>
-                <td>41%</td>
-                <td>41%</td>
+              
               </tr>
 
             </tbody>

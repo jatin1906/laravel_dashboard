@@ -39,4 +39,5 @@ Route::middleware(['auth'])->group(function () {
 // Route for sql
 Route::controller(sqlController::class)->group(function () {
     Route::get('secSalary/{number}', 'secondhigestSalary');
+    Route::get('getUserRecords', 'getUserRecord');
 });

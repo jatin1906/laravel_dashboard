@@ -18,15 +18,15 @@ class salarySeeder extends Seeder
         $data = [
             [
                 'salary' => '12000',
-                'name' => 'Jatin'
+                'user_id' => '1'
             ],
             [
                 'salary' => '15000',
-                'name' => 'nitin'
+                'user_id' => '1'
             ],
             [
                 'salary' => '21100',
-                'name' => 'Akash'
+                'user_id' => '2'
             ]
         ];
         DB::table('table_salary')->insert($data);

@@ -24,6 +24,12 @@ class User extends Authenticatable
         'userType'
     ];
 
+
+    public function salary()
+    {
+        return $this->hasMany(salary::class, 'id');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
