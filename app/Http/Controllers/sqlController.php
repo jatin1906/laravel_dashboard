@@ -7,7 +7,8 @@ use App\Models\salary;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Response;
+use Maatwebsite\Excel\Facades\Excel;
 
 class sqlController extends Controller
 {
@@ -31,5 +32,39 @@ class sqlController extends Controller
         $user = User::find(1)->salary;
         $user = User::with('salary')->find(1);
         return $user;
+    }
+
+    // function exportData()
+    // {
+    //     $users  = User::all();
+
+    //     // Define the headers for the CSV file
+    //     $headers = [
+    //         'Content-Type' => 'text/csv',
+    //         'Content-Disposition' => 'attachment; filename="users.csv"',
+    //     ];
+
+    //     // Create a callback to write CSV content
+    //     $callback = function () use ($users) {
+    //         $file = fopen('php://output', 'w');
+
+    //         // Add CSV column headers
+    //         fputcsv($file, ['ID', 'Name', 'Email', 'User Type']);
+
+    //         // Add data rows
+    //         foreach ($users as $user) {
+    //             fputcsv($file, [$user->id, $user->name, $user->email, $user->userType]);
+    //         }
+
+    //         fclose($file);
+    //     };
+
+    //     return Response::stream($callback, 200, $headers);
+    // }
+
+    function exportData()
+    {
+
+        return  Excel::download(new User, 'users.csv');
     }
 }
