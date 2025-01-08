@@ -15,20 +15,21 @@ class salarySeeder extends Seeder
      */
     public function run()
     {
-        $data = [
-            [
-                'salary' => '12000',
-                'user_id' => '1'
-            ],
-            [
-                'salary' => '15000',
-                'user_id' => '1'
-            ],
-            [
-                'salary' => '21100',
-                'user_id' => '2'
-            ]
-        ];
-        DB::table('table_salary')->insert($data);
+        \App\Models\salary::factory(500)->create();
+        // $data = [
+        //     [
+        //         'salary' => '12000',
+        //         'user_id' => '1'
+        //     ],
+        //     [
+        //         'salary' => '15000',
+        //         'user_id' => '1'
+        //     ],
+        //     [
+        //         'salary' => '21100',
+        //         'user_id' => '2'
+        //     ]
+        // ];
+        // DB::table('table_salary')->insert($data);
     }
 }

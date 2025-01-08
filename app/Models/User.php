@@ -31,11 +31,6 @@ class User extends Authenticatable
         return $this->hasMany(salary::class, 'id');
     }
 
-    public function collection()
-    {
-        return User::all(); // Fetch all users
-    }
-
     /**
      * The attributes that should be hidden for serialization.
      *

@@ -34,37 +34,37 @@ class sqlController extends Controller
         return $user;
     }
 
-    // function exportData()
-    // {
-    //     $users  = User::all();
+    function exportDataManual()
+    {
+        $users  = User::all();
 
-    //     // Define the headers for the CSV file
-    //     $headers = [
-    //         'Content-Type' => 'text/csv',
-    //         'Content-Disposition' => 'attachment; filename="users.csv"',
-    //     ];
+        // Define the headers for the CSV file
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="users.csv"',
+        ];
 
-    //     // Create a callback to write CSV content
-    //     $callback = function () use ($users) {
-    //         $file = fopen('php://output', 'w');
+        // Create a callback to write CSV content
+        $callback = function () use ($users) {
+            $file = fopen('php://output', 'w');
 
-    //         // Add CSV column headers
-    //         fputcsv($file, ['ID', 'Name', 'Email', 'User Type']);
+            fputcsv($file, ['ID', 'Name', 'Email', 'User Type']);
 
-    //         // Add data rows
-    //         foreach ($users as $user) {
-    //             fputcsv($file, [$user->id, $user->name, $user->email, $user->userType]);
-    //         }
+            foreach ($users as $user) {
+                fputcsv($file, [$user->id, $user->name, $user->email, $user->userType]);
+            }
 
-    //         fclose($file);
-    //     };
+            fclose($file);
+        };
 
-    //     return Response::stream($callback, 200, $headers);
-    // }
+        return Response::stream($callback, 200, $headers);
+    }
 
     function exportData()
     {
 
         return  Excel::download(new User, 'users.csv');
     }
+
+    function getChunkData() {}
 }
