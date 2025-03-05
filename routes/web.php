@@ -41,4 +41,5 @@ Route::controller(sqlController::class)->group(function () {
     Route::get('secSalary/{number}', 'secondhigestSalary');
     Route::get('getUserRecords', 'getUserRecord');
     Route::get('export-data', 'exportData');
+    Route::get('getChunk', 'getChunkData');
 });

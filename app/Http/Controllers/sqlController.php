@@ -66,5 +66,13 @@ class sqlController extends Controller
         return  Excel::download(new User, 'users.csv');
     }
 
-    function getChunkData() {}
+    function getChunkData()
+    {
+        $user  = DB::table('table_salary')->orderBy('salary_id')->chunk(100, function ($salary) {
+            $key = 0;
+            foreach ($salary as $key => $val) {
+                echo ++$key . ")" . $val->salary . "<br>";
+            }
+        });
+    }
 }

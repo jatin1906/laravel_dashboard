@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('salary');
             $table->string('name');
-
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('table_salary');
     }
 };

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\salary;
 
 class salarySeeder extends Seeder
 {
@@ -15,7 +16,8 @@ class salarySeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\salary::factory(500)->create();
+        salary::factory(500)->create();
+        // \App\Models\salary::factory(500)->create();
         // $data = [
         //     [
         //         'salary' => '12000',

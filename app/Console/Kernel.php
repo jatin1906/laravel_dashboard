@@ -17,9 +17,9 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule
-        -> command('')
-        -> everyMinute()
-        -> appendOutputTo (storage_path().'/logs/laravel_output.log');
+            ->command('')
+            ->everyMinute()
+            ->appendOutputTo(storage_path() . '/logs/laravel_output.log');
     }
 
     /**
@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

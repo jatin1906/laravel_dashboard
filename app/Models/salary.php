@@ -9,4 +9,6 @@ class salary extends Model
 {
     use HasFactory;
     protected $table = 'table_salary';
+    public $timestamps = false;
+    protected $fillable = ['id', 'salary'];
 }
