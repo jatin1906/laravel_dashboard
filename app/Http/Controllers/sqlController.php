@@ -75,4 +75,9 @@ class sqlController extends Controller
             }
         });
     }
+
+    function backUpTable()
+    {
+        return DB::statement('Create tabel tabel_users_backup as select * from users');
+    }
 }
